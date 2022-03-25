@@ -18,6 +18,29 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
+
+############################
+# Intel One API Dependency #
+############################
+
+# Intel One Api dependency - required for MCFFT
+# Intel One Api dependency - required for MCFFT
+win32:CONFIG(release, debug|release): LIBS += -L$$(ONEAPI_ROOT)/ipp/latest/lib/intel64/ -lippcore
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$(ONEAPI_ROOT)/ipp/latest/lib/intel64/ -lippcore
+
+win32:CONFIG(release, debug|release): LIBS += -L$$(ONEAPI_ROOT)/ipp/latest/lib/intel64/ -lippi
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$(ONEAPI_ROOT)/ipp/latest/lib/intel64/ -lippi
+
+win32:CONFIG(release, debug|release): LIBS += -L$$(ONEAPI_ROOT)/ipp/latest/lib/intel64/ -lipps
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$(ONEAPI_ROOT)/ipp/latest/lib/intel64/ -lipps
+
+win32:CONFIG(release, debug|release): LIBS += -L$$(ONEAPI_ROOT)/ipp/latest/lib/intel64/ -lippvm
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$(ONEAPI_ROOT)/ipp/latest/lib/intel64/ -lippvm
+
+INCLUDEPATH += $$(ONEAPI_ROOT)
+DEPENDPATH += $$(ONEAPI_ROOT)
+
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
