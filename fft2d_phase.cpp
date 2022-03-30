@@ -296,5 +296,9 @@ void FFT2DPhase::performFFTPhase(
     const Ipp32f range = maxPhase - minPhase;
     const Ipp32f mul = range < 0.0001 ? 1 : std::numeric_limits<Ipp8u>::max() / range;  //do not div by zero.
 
+    //Some links to the phase unwrapping
+    //https://docs.opencv.org/3.4/d9/dfb/tutorial_unwrap.html
+    //https://wiki.qt.io/How_to_setup_Qt_and_openCV_on_Windows
+
     convertWithScale(buffFlt0,imageOutput,imageSize,add,mul);
 }
