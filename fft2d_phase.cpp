@@ -292,13 +292,15 @@ void FFT2DPhase::performFFTPhase(
     FFT2D_PHASE_ASSERT( minPhase >= -PI - EPSILON );
     FFT2D_PHASE_ASSERT( maxPhase <= +PI + EPSILON );
 
-    const Ipp32f add = -minPhase;
-    const Ipp32f range = maxPhase - minPhase;
-    const Ipp32f mul = range < 0.0001 ? 1 : std::numeric_limits<Ipp8u>::max() / range;  //do not div by zero.
-
+    //unwrapPhase( buffFlt0 )
     //Some links to the phase unwrapping
     //https://docs.opencv.org/3.4/d9/dfb/tutorial_unwrap.html
     //https://wiki.qt.io/How_to_setup_Qt_and_openCV_on_Windows
 
+    const Ipp32f add = -minPhase;
+    const Ipp32f range = maxPhase - minPhase;
+    const Ipp32f mul = range < 0.0001 ? 1 : std::numeric_limits<Ipp8u>::max() / range;  //do not div by zero.
     convertWithScale(buffFlt0,imageOutput,imageSize,add,mul);
+
+    //Color map.
 }

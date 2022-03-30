@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->splitterH->setSizes( {400,400} );
     ui->splitterV->setSizes( {300,100} );
-    load("C:\\Users\\m\\Documents\\Hologram Phase\\Hologramy\\image_0002.bmp");
+    load("C:\\Users\\m\\Documents\\Hologram Phase\\Hologramy\\image_0000.bmp");
 }
 
 
@@ -49,7 +49,7 @@ void MainWindow::load(const QString imagePath)
     ui->tE_Logs->append( QString("timer.elapsed() = %1").arg(timer.elapsed()) );
 
     QImage outImage( outData.data(), inpImage.width(), inpImage.height(),  inpImage.width(), QImage::Format_Grayscale8 );
-    ui->tE_Logs->append( QString("outImage.bytesPerLine() = %1").arg(outImage.bytesPerLine()) );
+    ui->tE_Logs->append( QString("outImage.bytesPerLine() = %1ms").arg(outImage.bytesPerLine()) );
 
 
     ui->lbl_Output->setPixmap( QPixmap::fromImage(outImage) );
