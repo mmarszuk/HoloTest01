@@ -10,7 +10,8 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
-    QImage image;
+    QImage inpImage;
+    QImage outImage;
 
 public:
     MainWindow(QWidget *parent = nullptr);
