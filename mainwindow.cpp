@@ -3,6 +3,8 @@
 #include <QMessageBox>
 #include <QPicture>
 
+#include <QElapsedTimer>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -38,7 +40,13 @@ void MainWindow::load(const QString imagePath)
     ui->tE_Logs->append( QString("inpImage.height() = %1").arg(inpImage.height()) );
     ui->tE_Logs->append( QString("inpImage.bytesPerLine() = %1").arg(inpImage.bytesPerLine()) );
 
-    fft2DPhase.performFFTPhase( inpImage.bits(), inpImage.width(), inpImage.height(), inpImage.bytesPerLine(), outData.data(), 80, 60 );
+    QElapsedTimer timer;
+
+    timer.start();
+    for( int i=0 ; i<1000 ; i++ ) {
+        fft2DPhase.performFFTPhase( inpImage.bits(), inpImage.width(), inpImage.height(), inpImage.bytesPerLine(), outData.data(), 80, 60 );
+    }
+    ui->tE_Logs->append( QString("timer.elapsed() = %1").arg(timer.elapsed()) );
 
     QImage outImage( outData.data(), inpImage.width(), inpImage.height(),  inpImage.width(), QImage::Format_Grayscale8 );
     ui->tE_Logs->append( QString("outImage.bytesPerLine() = %1").arg(outImage.bytesPerLine()) );
