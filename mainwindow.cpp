@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->splitterH->setSizes( {400,400} );
     ui->splitterV->setSizes( {300,100} );
-    load("C:\\Users\\m\\Documents\\Hologram Phase\\Hologramy\\image_0000.bmp");
+    load("C:\\Users\\m\\Documents\\Hologram Phase\\Hologramy\\image_0001.bmp");
 }
 
 
@@ -43,7 +43,7 @@ void MainWindow::load(const QString imagePath)
     QElapsedTimer timer;
 
     timer.start();
-    for( int i=0 ; i<1000 ; i++ ) {
+    for( int i=0 ; i<100 ; i++ ) {
         fft2DPhase.performFFTPhase( inpImage.bits(), inpImage.width(), inpImage.height(), inpImage.bytesPerLine(), outData.data(), 80, 60 );
     }
     ui->tE_Logs->append( QString("timer.elapsed() = %1").arg(timer.elapsed()) );

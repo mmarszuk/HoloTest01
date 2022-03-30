@@ -273,10 +273,10 @@ void FFT2DPhase::performFFTPhase(
     //never too near bottom, because we cutting out from TOP_PERCENT.
 
     memset( buffC1 , 0 , sizeof(buffC1[0]) * imageSize );
-    FFT2D_PHASE_ASSERT( idxMaxX + roi <  imageWidth );
-    FFT2D_PHASE_ASSERT( idxMaxX - roi >= 0 );
+    FFT2D_PHASE_ASSERT( idxMaxX + roi <  imageWidth  );
+    FFT2D_PHASE_ASSERT( idxMaxX - roi >= 0           );
     FFT2D_PHASE_ASSERT( idxMaxY + roi <  imageHeight );
-    FFT2D_PHASE_ASSERT( idxMaxY - roi >= 0 );
+    FFT2D_PHASE_ASSERT( idxMaxY - roi >= 0           );
 
     copySquareToCenter( buffC0, buffC1, imageWidth, imageHeight, idxMaxX, idxMaxY, roi );
 
@@ -289,8 +289,8 @@ void FFT2DPhase::performFFTPhase(
     ippsPhase_32fc(buffC1, buffFlt0, imageSize);
     Ipp32f minPhase, maxPhase;
     findMinMax(buffFlt0,imageSize,minPhase,maxPhase);
-    FFT2D_PHASE_ASSERT( minPhase >= -PI - 0.000001 );
-    FFT2D_PHASE_ASSERT( maxPhase <= +PI + 0.000001 );
+    FFT2D_PHASE_ASSERT( minPhase >= -PI - EPSILON );
+    FFT2D_PHASE_ASSERT( maxPhase <= +PI + EPSILON );
 
     const Ipp32f add = -minPhase;
     const Ipp32f range = maxPhase - minPhase;

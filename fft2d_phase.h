@@ -20,6 +20,7 @@ private:
     Ipp8u* pMemBuffer = nullptr;
 
     constexpr static double PI = 3.141592653589793238462643383279502884197169399375105820974944;
+    constexpr static double EPSILON = 0.000001;
 
 private:
 
