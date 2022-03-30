@@ -49,7 +49,7 @@
        <widget class="QWidget" name="widget_3" native="true">
         <layout class="QGridLayout" name="gridLayout_6">
          <item row="0" column="0">
-          <widget class="QSplitter" name="splitter_2">
+          <widget class="QSplitter" name="splitterV">
            <property name="palette">
             <palette>
              <active/>
@@ -63,7 +63,7 @@
            <property name="childrenCollapsible">
             <bool>false</bool>
            </property>
-           <widget class="QSplitter" name="splitter">
+           <widget class="QSplitter" name="splitterH">
             <property name="palette">
              <palette>
               <active>
