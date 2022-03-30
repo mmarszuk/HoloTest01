@@ -197,15 +197,5 @@ public:
     );
 
 
-    void test(
-        const Ipp8u imageInput[],  //the pixels of the image.
-        const int imageWidth,      //the width of the image input and output.
-        const int imageHeight,     //the height of the image.
-        const int rowSize,         //the row size of the input image given in the bytes with padding.
-        Ipp8u imageOutput[],       //the pixels of the output image imageWidth * imageHeight with zer padding
-        const int percentTop,      //the percent of the top half of the image to the searching of the max amplitude.
-        int roi                    //the real roi i equal ROI*2+1
-    );
-
 };
 
