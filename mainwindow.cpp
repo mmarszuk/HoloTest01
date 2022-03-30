@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->splitterH->setSizes( {400,400} );
     ui->splitterV->setSizes( {300,100} );
-    load("C:\\Users\\m\\Documents\\Hologram Phase\\Hologramy\\image_0001.bmp");
+    load("C:\\Users\\m\\Documents\\Hologram Phase\\Hologramy\\image_0002.bmp");
 }
 
 
