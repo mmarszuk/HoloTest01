@@ -144,24 +144,19 @@ void FFT2DPhase::test(
     FFT2D_PHASE_ASSERT( idxMaxY + roi <  imageHeight );
     FFT2D_PHASE_ASSERT( idxMaxY - roi >= 0 );
 
-    memset( imageOutput , 0 , sizeof(imageOutput[0]) * imageSize );
+    copySquareToCenter( buffC0, buffC1, imageWidth, imageHeight, idxMaxX, idxMaxY, roi );
 
-    copySquareToCenter( imageInput, imageOutput, imageWidth, imageHeight, idxMaxX, idxMaxY, roi );
-    return;
-
-//    copySquareToCenter( buffC0, buffC1, imageWidth, imageHeight, idxMaxX, idxMaxY, roi );
-
-//    //buffC1 = shift( fft( ishift( buffC1 ) ) )
-//    invRectShift( buffC1, buffC0, imageWidth, imageHeight );
-//    ippiDFTInv_CToC_32fc_C1IR(buffC0, sizeof(Ipp32fc) * imageWidth, pDFTSpec, pMemBuffer);
-//    rectShift( buffC0, buffC1, imageWidth, imageHeight );
+    //buffC1 = shift( fft( ishift( buffC1 ) ) )
+    invRectShift( buffC1, buffC0, imageWidth, imageHeight );
+    ippiDFTInv_CToC_32fc_C1IR(buffC0, sizeof(Ipp32fc) * imageWidth, pDFTSpec, pMemBuffer);
+    rectShift( buffC0, buffC1, imageWidth, imageHeight );
 
     // Phase FFT
-    ippsPhase_32fc(buffC0, buffFlt0, imageSize);
-    //ippsMagnitude_32fc(buffC0, buffFlt0, imageSize);
-
+    ippsPhase_32fc(buffC1, buffFlt0, imageSize);
     Ipp32f minPhase, maxPhase;
     findMinMax(buffFlt0,imageSize,minPhase,maxPhase);
+//    FFT2D_PHASE_ASSERT( minPhase <= PI - 0.000001 );
+//    FFT2D_PHASE_ASSERT( maxPhase >= PI + 0.000001 );
 
     const Ipp32f add = -minPhase;
     const Ipp32f range = maxPhase - minPhase;

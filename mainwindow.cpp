@@ -30,12 +30,20 @@ void MainWindow::load(const QString imagePath)
         QMessageBox::warning(this,"Warning",QString("The system can convert to the grayscale.").arg(imagePath) );
         return;
     }
+
     ui->lbl_Origin->setPixmap( QPixmap::fromImage(inpImage) );
     outData.resize( inpImage.width() * inpImage.height() );
 
-    fft2DPhase.test( inpImage.bits(), inpImage.width(), inpImage.height(), inpImage.bytesPerLine(), outData.data(), 40, 60 );
+    ui->tE_Logs->append( QString("inpImage.width() = %1").arg(inpImage.width()) );
+    ui->tE_Logs->append( QString("inpImage.height() = %1").arg(inpImage.height()) );
+    ui->tE_Logs->append( QString("inpImage.bytesPerLine() = %1").arg(inpImage.bytesPerLine()) );
+
+    fft2DPhase.performFFTPhase( inpImage.bits(), inpImage.width(), inpImage.height(), inpImage.bytesPerLine(), outData.data(), 80, 60 );
 
     QImage outImage( outData.data(), inpImage.width(), inpImage.height(),  inpImage.width(), QImage::Format_Grayscale8 );
+    ui->tE_Logs->append( QString("outImage.bytesPerLine() = %1").arg(outImage.bytesPerLine()) );
+
+
     ui->lbl_Output->setPixmap( QPixmap::fromImage(outImage) );
 
 }

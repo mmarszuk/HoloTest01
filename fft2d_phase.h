@@ -177,7 +177,7 @@ private:
     ) {
         for( int ys=inputY-size, yd=imageHeight/2-size ; ys<=inputY+size  ; ys++, yd++ ) {
             for( int xs=inputX-size, xd=imageWidth/2-size ; xs<=inputX+size  ; xs++, xd++ ) {
-                output[ ys * imageWidth + xs ] = input[ ys * imageWidth + xs ];
+                output[ yd * imageWidth + xd ] = input[ ys * imageWidth + xs];
             }
         }
     }
